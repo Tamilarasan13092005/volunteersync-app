@@ -1,7 +1,16 @@
 {
-  "buildCommand": "flutter build web",
+  "buildCommand": "flutter build web --release --web-renderer canvaskit",
   "outputDirectory": "build/web",
-  "env": {
-    "FLUTTER_WEB_CANVASKIT_URL": "./"
-  }
-}
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cross-Origin-Embedder-Policy", "value": "require-corp" },
+        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
+      ]
+    }
+  ]
+}

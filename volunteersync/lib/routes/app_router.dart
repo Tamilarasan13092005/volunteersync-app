@@ -33,6 +33,10 @@ class AppRouter {
       initialLocation: landing,
       redirect: (ctx, state) {
         final auth = ctx.read<AuthProvider>();
+
+        // While session is being restored, don't redirect yet
+        if (auth.status == AuthStatus.initial) return null;
+
         final isAuth = auth.isAuthenticated;
         final isAuthRoute = state.matchedLocation == landing ||
             state.matchedLocation == login ||
