@@ -47,3 +47,8 @@ build/
 *.apk
 *.so
 *.dill
+build/
+*.apk
+*.so
+*.dill
+*.cache
